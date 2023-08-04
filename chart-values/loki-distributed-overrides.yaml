@@ -116,7 +116,7 @@ loki:
     limits_config:
       enforce_metric_name: false
       reject_old_samples: true
-      reject_old_samples_max_age: 168h
+      reject_old_samples_max_age: 24h
       max_cache_freshness_per_query: 10m
       split_queries_by_interval: 15m
 
@@ -212,13 +212,13 @@ loki:
   # -- Check https://grafana.com/docs/loki/latest/configuration/#schema_config for more info on how to configure schemas
   schemaConfig:
     configs:
-    - from: 2020-09-07
-      store: boltdb-shipper
-      object_store: filesystem
-      schema: v11
-      index:
-        prefix: loki_index_
-        period: 24h
+      - from: 2020-09-07
+        store: boltdb-shipper
+        object_store: filesystem
+        schema: v11
+        index:
+          prefix: loki_index_
+          period: 24h
 
   # -- Check https://grafana.com/docs/loki/latest/configuration/#storage_config for more info on how to configure storages
   storageConfig:
@@ -229,11 +229,11 @@ loki:
       cache_ttl: 168h
     filesystem:
       directory: /var/loki/chunks
-# -- Uncomment to configure each storage individually
-#   azure: {}
-#   gcs: {}
-#   s3: {}
-#   boltdb: {}
+  # -- Uncomment to configure each storage individually
+  #   azure: {}
+  #   gcs: {}
+  #   s3: {}
+  #   boltdb: {}
 
   # -- Structured loki configuration, takes precedence over `loki.config`, `loki.schemaConfig`, `loki.storageConfig`
   structuredConfig: {}
@@ -449,7 +449,8 @@ ingester:
     # -- Enable creating PVCs which is required when using boltdb-shipper
     enabled: false
     # -- Use emptyDir with ramdisk for storage. **Please note that all data in ingester will be lost on pod restart**
-    inMemory: false
+    inMemory:
+      false
       # -- List of the ingester PVCs
       # @notationType -- list
     claims:
@@ -538,7 +539,8 @@ distributor:
   # -- Node selector for distributor pods
   nodeSelector: {}
   # -- Tolerations for distributor pods
-  tolerations: []
+  tolerations:
+    []
     # -- Adds the appProtocol field to the distributor service. This allows distributor to work with istio protocol selection.
   appProtocol:
     # -- Set the optional grpc service protocol. Ex: "grpc", "http2" or "https"
@@ -832,13 +834,13 @@ tableManager:
 # You'll need to supply authn configuration for your ingress controller.
 ingress:
   enabled: false
-#  ingressClassName: nginx
+  #  ingressClassName: nginx
   annotations: {}
-#    nginx.ingress.kubernetes.io/auth-type: basic
-#    nginx.ingress.kubernetes.io/auth-secret: loki-distributed-basic-auth
-#    nginx.ingress.kubernetes.io/auth-secret-type: auth-map
-#    nginx.ingress.kubernetes.io/configuration-snippet: |
-#      proxy_set_header X-Scope-OrgID $remote_user;
+  #    nginx.ingress.kubernetes.io/auth-type: basic
+  #    nginx.ingress.kubernetes.io/auth-secret: loki-distributed-basic-auth
+  #    nginx.ingress.kubernetes.io/auth-secret-type: auth-map
+  #    nginx.ingress.kubernetes.io/configuration-snippet: |
+  #      proxy_set_header X-Scope-OrgID $remote_user;
   paths:
     distributor:
       - /api/prom/push
@@ -977,7 +979,7 @@ gateway:
     enabled: false
     # -- Ingress Class Name. MAY be required for Kubernetes versions >= 1.18
     # For example: `ingressClassName: nginx`
-    ingressClassName: ''
+    ingressClassName: ""
 
     # -- Annotations for the gateway ingress
     annotations: {}
@@ -1309,7 +1311,8 @@ ruler:
     # -- Annotations for ruler PVCs
     annotations: {}
   # -- Directories containing rules files
-  directories: {}
+  directories:
+    {}
     # tenant_foo:
     #   rules1.txt: |
     #     groups:
@@ -1795,4 +1798,3 @@ networkPolicy:
     podSelector: {}
     # -- Specifies the namespace the discovery Pods are running in
     namespaceSelector: {}
-

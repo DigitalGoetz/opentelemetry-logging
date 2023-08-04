@@ -49,3 +49,5 @@ kubectl -n grafana-loki rollout status daemonset promtail
 # Install a Dummy application
 kubectl -n default apply -f ./manifests/dummy/deployment.yaml
 kubectl wait --for=condition=available --timeout=600s deployment.apps/dummy-deployment -n default
+
+

@@ -560,6 +560,7 @@ datasources:
     datasources:
       - name: Loki
         type: loki
+        uid: somelokiuid
         access: proxy
         url: http://loki-loki-distributed-gateway.grafana-loki.svc.cluster.local
         jsonData:
