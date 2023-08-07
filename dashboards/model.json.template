@@ -33,7 +33,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": ">LOKI_UUID<"
+        "uid": "somelokiuid"
       },
       "description": "",
       "fieldConfig": {
@@ -111,7 +111,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": ">LOKI_UUID<"
+            "uid": "somelokiuid"
           },
           "expr": "sum(count_over_time({namespace=~\"$namespace\", stream=~\"$stream\", container =~\"$container\"} |= \"$query\" [$__interval]))",
           "instant": false,
@@ -125,7 +125,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": ">LOKI_UUID<"
+        "uid": "somelokiuid"
       },
       "description": "Logs from services running in Kubernetes",
       "gridPos": {
@@ -149,7 +149,7 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": ">LOKI_UUID<"
+            "uid": "somelokiuid"
           },
           "expr": "{namespace=~\"$namespace\", stream=~\"$stream\", container =~\"$container\"} |= \"$query\"",
           "refId": "A"
@@ -194,7 +194,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": ">LOKI_UUID<"
+          "uid": "somelokiuid"
         },
         "definition": "label_values(namespace)",
         "hide": 0,
@@ -218,7 +218,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": ">LOKI_UUID<"
+          "uid": "somelokiuid"
         },
         "definition": "label_values(stream)",
         "hide": 0,
@@ -242,7 +242,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": ">LOKI_UUID<"
+          "uid": "somelokiuid"
         },
         "definition": "label_values(container)",
         "hide": 0,

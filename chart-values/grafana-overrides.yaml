@@ -562,7 +562,7 @@ datasources:
         type: loki
         uid: somelokiuid
         access: proxy
-        url: http://loki-loki-distributed-gateway.grafana-loki.svc.cluster.local
+        url: http://loki-loki-distributed-gateway.opentelemetry.svc.cluster.local
         jsonData:
           maxLines: 1000
 

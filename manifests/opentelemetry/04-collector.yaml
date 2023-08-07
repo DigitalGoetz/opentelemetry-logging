@@ -37,11 +37,11 @@ spec:
       logging:
         verbosity: normal
       loki:
-        endpoint: http://loki-loki-distributed-gateway.grafana-loki.svc.cluster.local/loki/api/v1/push
+        endpoint: http://loki-loki-distributed-gateway.opentelemetry.svc.cluster.local/loki/api/v1/push
 
     service:
       pipelines:
         logs:
           receivers: [loki]
           processors: [attributes]
-          exporters: [loki]
+          exporters: [loki, logging]
